@@ -26,6 +26,13 @@ func validateAlertName(alert *promv1.Rule) []Problem {
 		})
 	}
 
+	if len(alert.Alert) > 50 {
+		result = append(result, Problem{
+			ResourceName: alert.Alert,
+			Description:  "alert name exceeds 50 characters",
+		})
+	}
+
 	return result
 }
 
